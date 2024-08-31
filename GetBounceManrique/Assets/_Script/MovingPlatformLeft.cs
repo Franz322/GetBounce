@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockMovement : MonoBehaviour
+public class MovingPlatformLeft : MonoBehaviour
 {
-    Rigidbody2D rb;
     public float range;
     public float speed;
     private float rightRange;
     private float leftRange;
-    private bool isMovingRight;
+    private bool isMovingLeft;
 
-   
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +20,19 @@ public class BlockMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMovingRight)
+        if (isMovingLeft)
+        {
+
+            if (transform.position.x > leftRange)
+            {
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+            }
+            else
+            {
+                isMovingLeft = false;
+            }
+        }
+        else
         {
             if (transform.position.x < rightRange)
             {
@@ -30,21 +40,8 @@ public class BlockMovement : MonoBehaviour
             }
             else
             {
-                isMovingRight = false;
-            }
-           
-        }
-        else
-        {
-            if (transform.position.x > leftRange)
-            {
-                transform.Translate(Vector3.left * speed * Time.deltaTime);
-            }
-            else
-            {
-                isMovingRight = true;
+                isMovingLeft = true;
             }
         }
     }
-
 }
