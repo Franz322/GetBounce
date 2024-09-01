@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
     public float Movespeed = 5f;
+    public float deadEndY;
+    public Transform startPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +20,9 @@ public class Movement : MonoBehaviour
     {
         float movement = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2 (movement * Movespeed, rb.velocity.y);
+        if (transform.position.y < deadEndY)
+        {
+            transform.position = startPoint.position;
+        }
     }
 }
