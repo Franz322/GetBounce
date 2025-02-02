@@ -23,7 +23,7 @@ public class bouncines : MonoBehaviour
             rb.AddForce(bounce, ForceMode2D.Impulse); // .Force .Impulse .Acceleration .VelocityChange
         }
 
-
+        FindObjectOfType<SFXManager>().PlayBounceSFX();
 
     }
 
